@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="udemy_rasberry_pi_yocto" Database="" Version="10.0.0">
+  <Project Name="udemy_rasberry_pi_yocto" Path="udemy_rasberry_pi_yocto.project" Active="No"/>
+  <Project Name="hello_world" Path="hello_world/hello_world.project" Active="Yes"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="udemy_rasberry_pi_yocto" ConfigName="Debug"/>
+      <Project Name="hello_world" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="udemy_rasberry_pi_yocto" ConfigName="Debug"/>
+      <Project Name="hello_world" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
