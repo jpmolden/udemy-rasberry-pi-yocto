@@ -1,0 +1,5 @@
+#include <UnitTest++.h>
+
+TEST_FIXTURE(fuxtur1, testing1)
+{
+}

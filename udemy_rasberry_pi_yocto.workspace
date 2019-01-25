@@ -2,16 +2,19 @@
 <CodeLite_Workspace Name="udemy_rasberry_pi_yocto" Database="" Version="10.0.0">
   <Project Name="udemy_rasberry_pi_yocto" Path="udemy_rasberry_pi_yocto.project" Active="No"/>
   <Project Name="hello_world" Path="hello_world/hello_world.project" Active="Yes"/>
+  <Project Name="unit_tests" Path="unit_tests/unit_tests.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="udemy_rasberry_pi_yocto" ConfigName="Debug"/>
       <Project Name="hello_world" ConfigName="Debug"/>
+      <Project Name="unit_tests" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="udemy_rasberry_pi_yocto" ConfigName="Debug"/>
       <Project Name="hello_world" ConfigName="Release"/>
+      <Project Name="unit_tests" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

@@ -1,0 +1,105 @@
+#!/bin/sh
+
+# password=$(zenity --password)
+# zenity --title="Choose something" --column="Choice" "SetupRaspi" "MakeThis" "Blah"
+
+RES=$(zenity --list \
+  --title="Choose the Bugs You Wish to View" \
+  --column="Number" --column="Type" --column="Description" \
+    1 Init  "Initialize poky here" \
+    2 Build "Build the poky image (may take several hours)" \
+    3 Qemu  "Run the image on the emulator")
+echo "You selected $RES";
+
+
+case $RES in
+     1)
+        echo "Initialize the repo"
+        # 
+        # Support Packages
+        sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
+        git clone https://git.yoctoproject.org/git/poky
+        cd poky/
+        # checkout the morty release branch from the poky repo
+        git checkout -b morty origin/morty
+        # -b building relase
+        # source - Initialize the build dir, the default is the name build
+        sudo apt install virtualenv
+        virtualenv -p /usr/bin/python2.7 --distribute temp-python
+        source temp-python/bin/activate
+        source oe-init-build-env
+        # Bitbake will start the image building proocess -k (continue if small errors)
+        bitbake -k core-image-sato
+        # https://www.yoctoproject.org/learn/
+        ;;
+     2)
+        echo "Building the poky image"
+        echo "Creating a test image"
+
+
+
+        ;;
+     3)
+        echo "Running Qemu Test image"
+        # Running on an emulator Qemu
+        source oe-init-build-env        
+        runqemu qemux86
+        ;;
+
+     4)
+        echo "View Configurations"
+        # Yocto has 2 main configuration files
+        # The local conf - Decide on the target
+        # udemy-rasberry-pi-yocto/poky/build$ gedit conf/local.conf          
+            # MACHINE is the target eg. qemux86, beaglebone ect
+
+
+        # The bblayers config (bitbake layers config)
+        # Device specific hardware information
+        # udemy-rasberry-pi-yocto/poky/build$ gedit conf/bblayers.conf          
+
+        ;;
+
+     5)
+        echo "Building a basic console image for rasberry pi"
+        cd poky
+        git clone -b morty git://git.yoctoproject.org/meta-raspberrypi       
+
+        # 
+        ls meta-raspberrypi/recipes-core/images/
+
+      # 401  ls meta-raspberrypi/recipes-core/images/
+      # 402  source oe-init-build-env rpi-build
+      # 403  source temp-python/bin/activate
+      # 404  source oe-init-build-env rpi-build
+      # 405  bitbake-layers add-layer /home/jpmolden/Desktop/GitHub/udemy-rasberry-pi-yocto/poky/meta-raspberrypi/ -> rpi-build/conf/bblayers.conf
+      # 406  bitbake-layers add-layer /home/jpmolden/Desktop/GitHub/udemy-rasberry-pi-yocto/poky/meta-raspberrypi/
+      # 407  cd ..
+      # 408  bitbake-layers add-layer /home/jpmolden/Desktop/GitHub/udemy-rasberry-pi-yocto/poky/meta-raspberrypi/
+      # 409  nano rpi-build/conf/local.conf 
+        source temp-python/bin/activate
+        source oe-init-build-env rpi-build
+        bitbake -k rpi-basic-image
+        ;;
+
+     *)
+        echo "Invalid option"
+        ;;
+
+     *)
+        echo "Invalid option"
+        ;;
+
+     *)
+        echo "Invalid option"
+        ;;
+
+esac
+
+
+
+
+
+
+
+echo "Hello\n";
